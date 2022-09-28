@@ -1,2 +1,3 @@
-# patika-js-homeworks-
+# patika-js-homeworks
+
 JavaScript Homeworks
