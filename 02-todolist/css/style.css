@@ -1,0 +1,182 @@
+:root {
+  --kodluyoruz: #f78501;
+  --white: #ffffff;
+}
+
+.hide {
+  display: none;
+}
+
+/* #region Header*/
+
+#header {
+  background-color: var(--kodluyoruz);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1080px;
+  margin: 0px auto 10px;
+}
+
+#header #header-logo {
+  background-color: var(--white);
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+#header #header-title {
+  font-size: 3rem;
+  color: var(--white);
+  font-family: "Secular One", sans-serif;
+}
+
+/* #endregion Header */
+
+/* #region Input*/
+
+#add-todo {
+  max-width: 1080px;
+  margin: 0px auto 10px;
+  padding: 0 20px;
+}
+
+#add-todo form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#add-todo form input[type="text"] {
+  border: 1px solid gainsboro;
+  outline: 0;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 700px;
+  font-size: 2rem;
+  padding: 10px 5px;
+  margin-bottom: 10px;
+}
+
+#add-todo form #form-alert {
+  padding: 10px 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 700px;
+  color: red;
+  background-color: #ffb2b2;
+  border: 1px solid red;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+#add-todo form button {
+  border: none;
+  outline: 0;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 700px;
+  height: 100px;
+  font-size: 2rem;
+  padding: 5px;
+  color: var(--white);
+  background-color: var(--kodluyoruz);
+  transition: 300ms;
+}
+
+#add-todo form button:hover {
+  cursor: pointer;
+  background-color: var(--white);
+  border: 2px solid var(--kodluyoruz);
+  color: var(--kodluyoruz);
+}
+
+/* #endregion Input */
+
+/* #region Todo's */
+#todos {
+  max-width: 1080px;
+  margin: auto;
+  padding: 20px;
+}
+
+#todos ul li {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid gainsboro;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+#todos ul li .todo,
+#todos ul li .remove {
+  padding: 20px;
+  font-size: 1.5rem;
+}
+
+#todos ul li .todo {
+  width: 100%;
+}
+
+#todos ul .did-it .todo,
+#todos ul .did-it .remove {
+  background-color: gainsboro;
+}
+
+#todos ul .did-it .todo {
+  text-decoration: line-through;
+}
+
+#todos ul li:has(.todo:hover) {
+  background-color: gainsboro;
+}
+
+#todos ul li .remove {
+  text-align: center;
+  transition: 300ms;
+}
+
+#todos ul li .remove:hover {
+  background-color: red;
+  color: var(--white);
+}
+
+#todos ul h2 {
+  font-size: 2rem;
+  font-family: "Secular One", sans-serif;
+  text-align: center;
+  background-color: var(--kodluyoruz);
+  color: var(--white);
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+#todos #todos-alert {
+  padding: 10px 5px;
+  margin: 0 auto 10px;
+  width: 100%;
+  max-width: 700px;
+  color: red;
+  background-color: #ffb2b2;
+  border: 1px solid red;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+#todos ul #clear {
+  font-size: 2rem;
+  font-family: "Secular One", sans-serif;
+  text-align: center;
+  background-color: red;
+  color: var(--white);
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+/* #endregion */

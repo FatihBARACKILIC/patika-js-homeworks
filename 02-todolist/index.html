@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header id="header">
+      <div id="header-logo">
+        <img
+          src="https://cdn.sanity.io/images/9kdepi1d/production/65c832d202a503b15d99e628f4313782f3ef50db-300x62.png"
+          alt="Kodluyoruz Logo"
+        />
+      </div>
+      <h1 id="header-title">TODO List</h1>
+    </header>
+
+    <section id="add-todo">
+      <form>
+        <input
+          type="text"
+          name=""
+          id="new-todo"
+          placeholder="New Todo"
+          autofocus
+        />
+        <div id="form-alert" class="hide">Blank data cannot be entered!</div>
+        <button type="submit" id="add">Add</button>
+      </form>
+    </section>
+
+    <article id="todos">
+      <div id="todos-alert" class="hide">Todo not found!</div>
+      <ul></ul>
+    </article>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
