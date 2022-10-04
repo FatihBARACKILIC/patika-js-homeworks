@@ -5,30 +5,7 @@ const formAlert = document.querySelector("#form-alert")
 const todoAlert = document.querySelector("#todos-alert")
 const ul = document.querySelector("ul")
 
-input.addEventListener("keyup", (e) => {
-  if (e.target.value.trim().length) {
-    button.removeAttribute("disabled")
-    formAlert.classList.add("hide")
-  } else {
-    button.setAttribute("disabled", "")
-    formAlert.classList.remove("hide")
-  }
-})
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault()
-  if (input.value.trim().length) {
-    button.removeAttribute("disabled")
-    formAlert.classList.add("hide")
-    setTodos(input.value.trim())
-  } else {
-    button.setAttribute("disabled", "")
-    formAlert.classList.remove("hide")
-  }
-})
-
 addEventListener("load", (e) => {
-  // e.preventDefault()
   const todos = getTodos() || []
   if (todos.length === 0) showTodoAlert(true)
   else {
@@ -36,6 +13,26 @@ addEventListener("load", (e) => {
     showTodos(todos)
   }
 })
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault()
+  if (inputChecker()) setTodos(input.value.trim())
+})
+
+input.addEventListener("keyup", (e) => {
+  inputChecker()
+})
+
+function inputChecker() {
+  if (input.value.trim().length) {
+    button.removeAttribute("disabled")
+    formAlert.classList.add("hide")
+    return true
+  } else {
+    button.setAttribute("disabled", "")
+    formAlert.classList.remove("hide")
+  }
+}
 
 function getTodos() {
   return JSON.parse(localStorage.getItem("todos"))
@@ -57,17 +54,8 @@ function showTodoAlert(hasNoTodo) {
 
 function showTodos(todos) {
   ul.innerHTML = ""
-  let uncompleted = 0
-  todos.map(({ didIt, name }, index) => {
-    const li = document.createElement("li")
-    if (!didIt) {
-      li.innerHTML = `
-    <div class="todo" onclick="didTodo(${index})">${name}</div>
-    <div class="remove" onclick="removeTodo(${index})">X</div>`
-      ul.appendChild(li)
-      uncompleted++
-    }
-  })
+
+  const uncompleted = printTodos(todos, false)
 
   if (todos.length > uncompleted) {
     const completed = document.createElement("h2")
@@ -75,17 +63,10 @@ function showTodos(todos) {
     ul.appendChild(completed)
   }
   if (uncompleted === 0) showTodoAlert(true)
-  if (uncompleted) showTodoAlert(false)
-  todos.map(({ didIt, name }, index) => {
-    const li = document.createElement("li")
-    li.classList.add("did-it")
-    if (didIt) {
-      li.innerHTML = `
-    <div class="todo" onclick="didTodo(${index})">${name}</div>
-    <div class="remove" onclick="removeTodo(${index})">X</div>`
-      ul.appendChild(li)
-    }
-  })
+  else showTodoAlert(false)
+
+  printTodos(todos, true)
+
   if (todos.length > uncompleted) {
     const clearCompleted = document.createElement("div")
     clearCompleted.id = "clear"
@@ -93,6 +74,21 @@ function showTodos(todos) {
     clearCompleted.innerHTML = `Clear Completed Todo's`
     ul.appendChild(clearCompleted)
   }
+}
+
+function printTodos(todos, completed) {
+  let uncompleted = 0
+  todos.map(({ didIt, name }, index) => {
+    const li = document.createElement("li")
+    if (didIt === completed) {
+      li.innerHTML = `
+  <div class="todo" onclick="didTodo(${index})">${name}</div>
+  <div class="remove" onclick="removeTodo(${index})">X</div>`
+      ul.appendChild(li)
+      if (!completed) uncompleted++
+    }
+  })
+  return uncompleted
 }
 
 function clearCompleted() {
